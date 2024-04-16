@@ -111,116 +111,16 @@ kbl(
 ## Results
 
 ```{r}
-#| label: tbl-Culex
-#| tbl-cap: "Effects of predation and nutrients on Culex"
-#| fig-show: hide
-#| results: hide
-
-CulexFactorial <- lmer(culex_egg_rafts ~ fish*nutrient + (1 | block), data = df1)
-
-CulexAnova <- (anova(CulexFactorial))
-
-
-kbl(
-  CulexAnova,
-  col.names = c(
-    "SS",
-    "MS",
-    "df1",
-    "df2",
-    "F",
-    "p"
-  ), 
-  digits = c(3,3,0,0,3,4)
-  ) |>
-  kable_classic()
-
-Hydrofactorial <- lmer(hydrophilidae ~ fish*nutrient + (1 | block), data = df1)
-
-HydroAnova <- (anova(Hydrofactorial))
-
-kbl(
-  HydroAnova,
-  col.names = c(
-    "SS",
-    "MS",
-    "df1",
-    "df2",
-    "F",
-    "P"
-    ),
-  digits = c(3,3,0,0,3,4)
-  ) |>
-  kable_classic()
-  
-Dytisfactorial <- lmer(dytiscidae ~ fish*nutrient + (1 | block), data = df1)
-
-DytisAnova <- (anova(Dytisfactorial))
-  
-kbl(
-  DytisAnova,
-  col.names = c(
-    "SS",
-    "MS",
-    "df1",
-    "df1",
-    "df2",
-    "F",
-    "P"
-  ), 
-  digits = c(3,3,0,0,3,4)
-) |>
-  kable_classic()
-
-  
-```
-
-```{r}
-#| label: tbl-fixedANOVA
-#| tbl-cap: "ANOVA summary for the data provided by @Pintar.etal2018"
-#| fig-show: hide
-
-kbl(
-  anova(CulexFactorial),
-  digits = c(3,0,3,3)
-) |> 
-  kable_classic()
-```
-
-```{r}
-#| label: tbl-fixedANOVA2 
-#| tbl-cap: "ANOVA summary for the data provided by @Pintar.etal2018"
-#| fig-show: hide
-
-kbl(
-  anova(Hydrofactorial),
-  digits = c(3,0,3,3)
-) |>
-  kable_classic()
-```
-
-```{r}
-#| label: tbl-fixedANOVA3
-#| tbl-cap: "ANOVA summary for the data provided by @Pintar.etal2018."
-#| fig-show: hide
-
-kbl(
-  anova(Dytisfactorial),
-  digits = c(3,0,3,3)
-) |>
-  kable_classic()
-```
-
-```{r}
 #| label: tbl-mixedANOVA
 #| tbl-cap: "Linear mixed-effect model results for the data provided by @Pintar.etal2018."
 #| tbl-subcap: 
-#|     -"Fixed effect"
-#|     -"Random effect"
-#| layout-nrows: 2
+#|   - "Fixed effects"
+#|   - "Random effects"
+#| layout-nrow: 2
 
+CulexFactorial <- CulexFactorial <- lmer(culex_egg_rafts ~ fish*nutrient + (1 | block), data = df1)
 
-  CulexMixed <- anova(CulexFactorial)
+CulexMixed <- anova(CulexFactorial)
 
 kbl(
   CulexMixed,
@@ -252,16 +152,15 @@ kbl(
 
 ```
 
-```         
-```
-
 ```{r}
 #| label: tbl-mixedANOVA2
 #| tbl-cap: "Linear mixed model results for the data provided by @Pintar.etal2018."
 #| tbl-subcap: 
-#|     -"fixed effect"
-#|     - "Random effect"
-#| layout-nrows: 2
+#|   - "Fixed effects"
+#|   - "Random effects"
+#| layout-nrow: 2
+
+Hydrofactorial <- lmer(hydrophilidae ~ fish*nutrient + (1 | block), data = df1)
 
 HydroMixed <- anova(Hydrofactorial)
 
@@ -280,7 +179,7 @@ kbl(
   kable_classic()
 
 kbl(
-  rand(HydroFactorial),
+  rand(Hydrofactorial),
   col.names = c(
     "Parameters",
     "log-likelihood",
@@ -297,9 +196,11 @@ kbl(
 #| label: tbl:-mixedANOVA3
 #| tbl-cap: "Linear mixed-effect model results for the data provided by @Pintar@etal2018."
 #| tbl-subcap: 
-#|     - "Fixed effect"
-#|     -"Random effect"
-#| layout-nrows: 2
+#|   - "Fixed effects"
+#|   - "Random effects"
+#| layout-nrow: 2
+
+Dytisfactorial <- lmer(dytiscidae ~ fish*nutrient + (1 | block), data = df1)
 
 DytisMixed <- anova(Dytisfactorial)
 
